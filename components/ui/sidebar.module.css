@@ -1,0 +1,14 @@
+.logo {
+  font-size: 24px;
+  width: 60px;
+}
+
+.logo-div {
+  text-decoration: none;
+  align-items: baseline;
+  grid-gap: 1rem;
+}
+
+.logo-img-div {
+  background: aliceblue;
+}

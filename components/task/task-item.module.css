@@ -1,0 +1,15 @@
+.actions {
+  /* position: absolute; */
+  bottom: 10px;
+  /* right: 2vh; */
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.logo {
+  min-height: 170px;
+}
