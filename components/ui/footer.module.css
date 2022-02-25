@@ -1,0 +1,14 @@
+.logo_image {
+  padding-bottom: 5px !important;
+  border-radius: 8px;
+  padding-top: 5px !important;
+  background-color: white;
+}
+
+.footer {
+  bottom: 10px;
+  background-color: black;
+  /* position: fixed; */
+  opacity: 0.5;
+  width: 100%;
+}

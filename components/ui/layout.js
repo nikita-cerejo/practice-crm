@@ -41,7 +41,12 @@ const Layout = (props) => {
       </Overlay>
     );
   } else {
-    return <Login />;
+    return (
+      <>
+        <Login />
+        <Footer fixed={true} />
+      </>
+    );
   }
 };
 

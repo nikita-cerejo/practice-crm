@@ -265,3 +265,15 @@ a {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+body {
+  /* background: rgb(255, 255, 255); */
+  /* background: linear-gradient(
+    186deg,
+    rgba(255, 255, 255, 1) 6%,
+    rgba(28, 57, 238, 1) 99%
+  ); */
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background: url(/images/bg.webp);
+}
