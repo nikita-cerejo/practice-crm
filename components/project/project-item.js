@@ -72,8 +72,8 @@ const ProjectItem = (props) => {
             <Image
               alt={`${props.name} Logo`}
               className="card-img-left pl-0"
-              width={120}
-              height={120}
+              width={100}
+              height={100}
               src={props.logo ? props.logo : "/images/dair-logo.png"}
             />
             <div className={`ml-2 mt-3 ${classes["w-70"]}`}>
