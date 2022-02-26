@@ -26,11 +26,13 @@ export function TaskContextProvider(props) {
   async function fetchTasksHandler() {
     const task_list = await getAllTasks();
     setTasks(task_list);
+    return task_list;
   }
 
   async function fetchByProjectIdHandler(project_id) {
     const task_list = await getTaskByProjectId(project_id);
     setTasks(task_list);
+    return task_list;
   }
 
   async function fetchByIdHandler(task_id) {

@@ -1,11 +1,18 @@
 .actions {
-  position: absolute;
+  /* position: absolute; */
   bottom: 10px;
-  right: 10%;
+  /* right: 10%; */
+  display: flex;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .text-ellipsis {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.w-70 {
+  width: 70%;
 }

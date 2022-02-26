@@ -1,77 +1,35 @@
-import Button from "react-bootstrap/Button";
-import { useRouter } from "next/router";
-import { getAllTasks } from "../../lib/api-util";
-import Head from "next/head";
 import TaskList from "../../components/task/task-list";
-import Image from "next/image";
-import ProjectContext from "../../store/project-context";
 import TaskContext from "../../store/task-context";
-import { useContext } from "react";
+// import { getAllTasks } from "../../lib/api-util";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 const TaskListPage = (props) => {
-  const router = useRouter();
   const taskCtx = useContext(TaskContext);
+  const [tasks, setTasks] = useState([]);
 
-  const createBtnHandler = () => {
-    router.push("/tasks/create");
-  };
+  const getTasks = useCallback(async () => {
+    const tasks = await taskCtx.fetchTasks();
+    setTasks(tasks);
+  }, [taskCtx]);
 
-  const headContent = (
-    <>
-      <Head>
-        <title>All Tasks</title>
-      </Head>
-      <div className="text-right mr-2 mt-2">
-        <Button variant="primary" onClick={createBtnHandler}>
-          Create Task
-        </Button>
+  useEffect(() => {
+    getTasks();
+  }, [getTasks]);
+
+  if (tasks.length == 0) {
+    return (
+      <div className="text-center text-muted">
+        <h4>Loading...</h4>
       </div>
-    </>
-  );
-
-  if (!taskCtx.tasks) {
-    return (
-      <>
-        {headContent}
-        <div className="text-center text-muted">
-          <h4>Loading...</h4>
-        </div>
-      </>
     );
   }
-
-  if (0 == taskCtx.tasks.length) {
-    return (
-      <>
-        {headContent}
-        <div className="text-center text-muted">
-          <h4>No Tasks Available!</h4>
-          <Image
-            src="/images/no-data.jpg"
-            width="350"
-            height="350"
-            alt="No Data"
-          />
-        </div>
-      </>
-    );
-  }
-
-  const deleteBtnHandler = (id) => {
-    taskCtx.removeTask(id);
-  };
-
-  const completeBtnHandler = (id) => {
-    taskCtx.updateTask(id);
-  };
 
   const content = (
     <>
-      {headContent}
       <TaskList
         tasks={taskCtx.tasks}
-        onDeleteHandler={deleteBtnHandler}
-        onCompleteHandler={completeBtnHandler}
+        removeTask={taskCtx.removeTask}
+        updateTask={taskCtx.updateTask}
       />
     </>
   );

@@ -27,7 +27,7 @@ const CreateTaskPage = (props) => {
       .then((response) => {
         toast.success(`Task ${data.name} created successfully!`);
         taskCtx.fetchTasks();
-        router.push("/tasks");
+        router.back();
       });
   };
   return (
@@ -38,11 +38,25 @@ const CreateTaskPage = (props) => {
           <h4 className="m-4 text-center">Create Task</h4>
         </Card.Title>
         <Card.Body>
-          <TaskForm formSubmitHandler={formSubmitHandler}></TaskForm>
+          <TaskForm
+            formSubmitHandler={formSubmitHandler}
+            project_id={props.project_id}
+          ></TaskForm>
         </Card.Body>
       </Card>
     </Fragment>
   );
 };
 
+export async function getServerSideProps(context) {
+  let project_id = null;
+  if (context.query.project_id) {
+    project_id = context.query.project_id;
+  }
+  return {
+    props: {
+      project_id: project_id,
+    },
+  };
+}
 export default CreateTaskPage;

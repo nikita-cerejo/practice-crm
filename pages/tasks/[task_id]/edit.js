@@ -31,7 +31,7 @@ const EditTaskPage = (props) => {
       .then((response) => {
         toast.success(`Task ${data.name} created successfully!`);
         taskCtx.fetchTasks();
-        router.push("/tasks");
+        router.back();
       });
   };
   return (

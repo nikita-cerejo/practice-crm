@@ -14,14 +14,20 @@ const TaskForm = (props) => {
 
   const fetchForm = useCallback(async () => {
     let form_fields = await formFields();
+
     if (0 == form_fields.length) {
       return <h3>No fields</h3>;
     }
+
     let initValues = {};
     let schema = {};
     form_fields.forEach((data) => {
-      initValues[data.name] = data.initValue ? data.initValue : "";
       schema[data.name] = data.validation;
+      if (data.name == "project_id" && props.project_id) {
+        initValues[data.name] = props.project_id;
+      } else {
+        initValues[data.name] = data.initValue ? data.initValue : "";
+      }
     });
 
     setFormFieldsData(form_fields);
@@ -32,7 +38,7 @@ const TaskForm = (props) => {
     } else {
       setInitialValues(initValues);
     }
-  }, [props.task]);
+  }, [props.task, props.project_id]);
 
   useEffect(() => {
     fetchForm();

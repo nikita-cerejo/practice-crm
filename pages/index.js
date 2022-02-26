@@ -1,12 +1,14 @@
 import Login from "../components/auth/login";
-import { getAllProjects } from "../lib/api-util";
+import { getAllProjects, getAllTasks } from "../lib/api-util";
 import styles from "../styles/Home.module.css";
 import ProjectContext from "../store/project-context";
+import TaskContext from "../store/task-context";
 import { useContext } from "react";
 import { useSession } from "next-auth/react";
 
 export default function Home(props) {
   const projectCtx = useContext(ProjectContext);
+  const taskCtx = useContext(TaskContext);
   const { data: session, status } = useSession();
 
   return (
@@ -35,7 +37,7 @@ export default function Home(props) {
               </div>
               <div>
                 <h5>
-                  <b>{projectCtx.projects ? projectCtx.projects.length : 0}</b>
+                  <b>{taskCtx.tasks ? taskCtx.tasks.length : 0}</b>
                 </h5>
               </div>
             </div>
@@ -46,12 +48,14 @@ export default function Home(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const allProjects = await getAllProjects();
+// export async function getServerSideProps(context) {
+//   const allProjects = await getAllProjects();
+//   const allTasks = await getAllTasks();
 
-  return {
-    props: {
-      projects_count: allProjects.length,
-    },
-  };
-}
+//   return {
+//     props: {
+//       projects_count: allProjects.length,
+//       tasks_count: allTasks.length,
+//     },
+//   };
+// }

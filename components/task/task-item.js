@@ -68,18 +68,22 @@ const TaskItem = (props) => {
       .then((resp) => {
         if (200 != resp.status) {
           setShow(false);
-          toast.error("Something went wrong. Please try again later");
+          // toast.error("Something went wrong. Please try again later.");
         }
         return resp.json();
       })
       .then((response) => {
-        if (!response) {
-          setShow(false);
-          toast.error("Something went wrong. Please try again later");
+        if (response.error) {
+          toast.error(
+            response.error.message
+              ? response.error.message
+              : "Something went wrong. Please try again later."
+          );
         } else {
           props.deleteHandler(props.id);
           toast.success("Task Deleted Successfully");
         }
+        setShow(false);
       });
   };
   const today = new Date().toISOString().split("T")[0];

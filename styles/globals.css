@@ -277,3 +277,7 @@ body {
   background-size: cover !important;
   background: url(/images/bg.webp);
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
